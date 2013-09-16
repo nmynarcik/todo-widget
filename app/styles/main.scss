@@ -1,0 +1,134 @@
+$iconSpritePath: '../images/glyphicons-halflings.png';
+$iconWhiteSpritePath: "../images/glyphicons-halflings-white.png";
+@import 'sass-bootstrap/lib/bootstrap';
+@import "compass";
+
+$icons-spacing: 10px;
+$icons-sprite-dimensions: true;
+@import "sprites/icons/*.png";
+@include all-icons-sprites;
+
+//Variables
+$icons: sprite-map("sprites/icons/*.png", $spacing: 10);
+
+.container {
+    width: 100%;
+}
+
+.hero-unit {
+    position: relative;
+    margin: 50px auto 0 auto;
+    width: 300px;
+    h1 {
+        font-size: 57px;
+    }
+}
+
+form {
+    margin-top: 10px;
+}
+
+ul,
+li form {
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style: none;
+}
+
+ol li {
+    margin-bottom: 14px;
+    li {
+        margin-bottom: 5px;
+    }
+}
+
+li form {
+    display: none;
+}
+
+.editing {
+    span {
+        display: none;
+    }
+
+    form {
+        display: inline-block;
+    }
+}
+
+input:checked ~ span {
+    text-decoration: line-through;
+}
+
+.icons-mic {
+    text-indent: -9999px;
+    display: block;
+}
+
+input[type="text"] {
+    margin-bottom: 0;
+}
+
+#helpBtn {
+    padding: 2px 3px 3px;
+    display: block;
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    @include border-radius(4px);
+    i {
+        display: block;
+    }
+}
+
+.closeBtn {
+    padding: 3px;
+    margin-left: 10px;
+    i {
+        display: block;
+    }
+}
+
+.btn-warning {
+    position: absolute;
+    bottom: 15px;
+    left: 60px;
+}
+
+.modal-footer p {
+    position: absolute;
+    text-transform: uppercase;
+}
+
+#status {
+    font-size: 12px;
+}
+
+.mic-descr {
+    display: none;
+}
+
+.chrome .mic-descr {
+    display: inline-block;
+}
+
+/* iPads (portrait and landscape) ----------- */
+// @media only screen
+// and (min-device-width : 768px)
+// and (max-device-width : 1024px) {
+@media screen and (max-width: 1024px) {
+    @import "768down";
+}
+
+/* Smartphones (portrait and landscape) ----------- */
+// @media only screen
+// and (min-device-width : 320px)
+// and (max-device-width : 480px) {
+@media screen and (max-width: 480px) {
+    @import "480down";
+}
