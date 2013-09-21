@@ -40,6 +40,8 @@ yoBackbone.Views = yoBackbone.Views || {};
 
         toggle: function () {
           this.model.toggle();
+          // yoBackbone.Views.TodosView.prototype.updateProgress();
+          yoBackbone.App.events.trigger("update:progress");
         },
 
         toggleEdit: function () {

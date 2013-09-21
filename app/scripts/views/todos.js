@@ -1,6 +1,8 @@
 /*global yoBackbone, Backbone, JST*/
 
 yoBackbone.Views = yoBackbone.Views || {};
+yoBackbone.App = yoBackbone.App || {};
+yoBackbone.App.events = _.extend({}, Backbone.Events);
 var reco;
 
 (function () {
@@ -18,11 +20,14 @@ var reco;
         },
 
         initialize: function () {
-            _.bindAll(this, 'startVoice');
+            _.bindAll(this, 'startVoice','updateProgress');
             this.render();
+
+            this.displayProgress();
 
             this.listenTo(this.collection, 'add', this.addTodoItem);
             this.listenTo(this.collection, 'reset', this.addAllTodoItems);
+            yoBackbone.App.events.on("update:progress", this.updateProgress);
 
             this.collection.fetch();
 
@@ -49,6 +54,10 @@ var reco;
             return this;
         },
 
+        displayProgress: function(){
+            this.progress = new yoBackbone.Views.ProgressView();
+        },
+
         createTodo: function (event) {
             if(event)
                 event.preventDefault();
@@ -63,15 +72,24 @@ var reco;
                 }));
                 $('#new-todo').val('');
             }
+            this.updateProgress();
         },
 
         addTodoItem: function (todo) {
             var view = new yoBackbone.Views.TodoView({ model: todo });
             this.$('ul').append(view.render().el);
+            this.updateProgress();
+        },
+
+        updateProgress: function(){
+            var total = this.collection.length;
+            var comp = this.$el.find('input:checked').size();
+            this.progress.setProgress(comp, total);
         },
 
         addAllTodoItems: function () {
             this.collection.each(this.addTodoItem, this);
+            this.updateProgress();
         },
 
         startVoice: function(e) {
