@@ -25,6 +25,9 @@ yoBackbone.Views = yoBackbone.Views || {};
             var perc = comp/total * 100;
             this.$el.find('progress').val(perc);
             this.$el.find('#progressView').find('span').text(comp+'/'+total);
+            if($('html').hasClass('ie8') || $('html').hasClass('ie9')){
+                this.$el.find('progress-bar span').css('width',perc+'%');
+            }
         },
 
         getProgress: function(){

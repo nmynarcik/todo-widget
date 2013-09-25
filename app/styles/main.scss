@@ -121,6 +121,7 @@ input[type="text"] {
     position: absolute;
     bottom: 15px;
     right: 15px;
+    width: 100px;
     span {
         display: block;
         position: absolute;
@@ -129,6 +130,27 @@ input[type="text"] {
         font-weight: bold;
         font-size: 12px;
         margin-top: 1px;
+        z-index: 10px;
+    }
+    progress,
+    .progress-bar {
+        width: 100%;
+    }
+    .progress-bar {
+        position: relative;
+        display: block;
+        background-color: whiteSmoke;
+        height: 15px;
+        overflow: hidden;
+        span {
+            width: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: block;
+            background-color: blue;
+            text-indent: -9999px;
+        }
     }
 }
 
